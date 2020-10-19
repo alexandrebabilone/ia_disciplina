@@ -1,0 +1,51 @@
+ordem(tadeu,miguel).
+ordem(paulo,davi).
+ordem(paulo,luana).
+ordem(paulo,simone).
+ordem(simone,joana).
+ordem(simone,helena).
+ordem(paulo,kaio).
+ordem(miguel,kaio).
+ordem(tadeu,kaio).
+ordem(bruna,luana).
+ordem(davi,luana).
+ordem(luana,joana).
+ordem(luana,miguel).
+ordem(simone,miguel).
+ordem(bruna,miguel).
+ordem(bruna,joana).
+ordem(bruna,miguel).
+ordem(bruna,paulo).
+ordem(davi,kaio).
+ordem(davi,tadeu).
+ordem(simone,davi).
+ordem(joana,kaio).
+ordem(joana,tadeu).
+ordem(joana,miguel).
+ordem(paulo,joana).
+ordem(davi,joana).
+ordem(helena,miguel).
+ordem(luana,helena).
+ordem(joana,helena).
+ordem(tadeu,helena).
+ordem(luana,tadeu).
+ordem(bruna,tadeu).
+
+sequencia() :- ordem(A,B),ordem(B,C),ordem(C,D),ordem(D,E),ordem(E,F),ordem(F,G),ordem(G,H),ordem(H,I),ordem(I,J),write("1- "),write(A),write(" 2- "),write(B),write(" 3- "),write(C),write(" 4- "),write(D),write(" 5- "),write(E),
+write(" 6- "),write(F),write(" 7- "),write(G),write(" 8- "),write(H),write(" 9- "),write(I),write(" 10- "),write(J).
+
+% exercicio 2
+
+pway(a, b, 10).
+pway(b, c, 15).
+pway(d, c, 5).
+pway(d, b, 10).
+
+
+solve(Start, Start, [], 0).
+
+solve(Start, Finish, [Start, Finish], C) :-
+    (pway(Start, Finish, Cost);pway( Finish,Start, Cost)), C is Cost.
+
+solve(Start, Finish, [Start|V], C) :-
+    (pway(Start, X, Cost);pway( Finish,Start, Cost)), solve(X, Finish, V, RCost), C is Cost + RCost.
